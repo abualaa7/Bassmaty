@@ -15,7 +15,7 @@
             --text-color: #333;
             --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --overlay-bg: rgba(0, 0, 0, 0.5);
+            --overlay-bg: rgba(0, 0, 0, 0.6);
         }
 
         * {
@@ -23,13 +23,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
         }
 
         .container {
@@ -42,80 +43,84 @@
         header {
             position: relative;
             text-align: center;
-            padding: 25px 0;
-            background-color: var(--primary-color);
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
             color: white;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1;
         }
 
         header h1 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            opacity: 0.8;
-            font-weight: normal;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .live-clock {
-            font-size: 3.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
             margin: 5px 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-variant-numeric: tabular-nums;
         }
 
         .live-date {
             font-size: 1rem;
-            opacity: 0.9;
+            opacity: 0.85;
             margin-bottom: 5px;
         }
 
         .header-btn {
             position: absolute;
-            top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+            top: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             cursor: pointer;
-            font-size: 1.3rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.4rem;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: auto;
         }
 
-        .header-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .header-btn:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.05); }
         .settings-trigger { left: 20px; }
         .stats-trigger { right: 20px; }
 
         /* Card Styles */
         .card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
         }
 
         .card-title {
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.1rem;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: var(--primary-color);
             border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Info Grid */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -124,49 +129,49 @@
         }
 
         .info-item { display: flex; flex-direction: column; }
-        .info-label { font-size: 0.8rem; color: #777; }
-        .info-value { font-size: 1.1rem; font-weight: bold; color: var(--primary-color); }
+        .info-label { font-size: 0.85rem; color: #7f8c8d; margin-bottom: 2px; }
+        .info-value { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); }
 
-        /* Progress Bar */
-        .progress-bar { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin: 10px 0; }
-        .progress-fill { height: 100%; width: 0%; background: var(--success-color); transition: width 0.5s ease; }
+        .progress-bar { height: 14px; background: #eaeff2; border-radius: 7px; overflow: hidden; margin: 15px 0; }
+        .progress-fill { height: 100%; width: 0%; background: var(--success-color); transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .progress-warning { background-color: var(--warning-color); }
         .progress-danger { background-color: var(--danger-color); }
 
-        /* Status Badges */
-        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: white; }
+        .status-badge { display: inline-block; padding: 5px 15px; border-radius: 25px; font-size: 0.85rem; font-weight: 700; color: white; text-align: center; }
         .status-regular { background-color: var(--success-color); }
         .status-late { background-color: var(--warning-color); }
         .status-early { background-color: var(--danger-color); }
         .status-normal { background-color: var(--success-color); }
         .status-pending { background-color: #95a5a6; }
+        .status-extra { background-color: #9b59b6; } /* لون خاص للساعات الإضافية */
 
-        /* Buttons */
-        .btn { display: block; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-align: center; margin-bottom: 10px; color: white; }
+        .btn { display: block; width: 100%; padding: 18px; border: none; border-radius: 15px; font-size: 1.15rem; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; margin-bottom: 12px; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .btn-checkin { background-color: var(--success-color); }
         .btn-checkout { background-color: var(--accent-color); }
         .btn-secondary { background-color: #95a5a6; }
         .btn-danger { background-color: var(--danger-color); }
+        .btn-accent { background-color: var(--accent-color); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* Modal Styles */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--overlay-bg); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background-color: var(--card-bg); border-radius: 15px; width: 100%; max-width: 450px; max-height: 90vh; overflow-y: auto; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; text-align: right; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--overlay-bg); z-index: 1000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--card-bg); border-radius: 25px; width: 100%; max-width: 450px; max-height: 90vh; overflow-y: auto; padding: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* Statistics UI */
-        .stats-summary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
-        .stat-box { background: #f8f9fa; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #eee; }
-        .stat-box .val { display: block; font-size: 1.2rem; font-weight: 800; color: var(--primary-color); }
-        .stat-box .lbl { font-size: 0.7rem; color: #666; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.95rem; color: #555; }
+        .form-control { width: 100%; padding: 12px 15px; border: 2px solid #edf2f7; border-radius: 12px; font-size: 1rem; text-align: right; transition: border-color 0.2s; outline: none; }
 
-        .chart-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+        .stats-summary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 15px; }
+        .stat-box { background: #f8fbfd; padding: 15px; border-radius: 18px; text-align: center; border: 1px solid #eef2f7; }
+        .stat-box .val { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary-color); }
+        .stat-box .lbl { font-size: 0.8rem; color: #7f8c8d; }
+
+        .chart-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0 30px; }
         .donut-chart {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            background: conic-gradient(var(--success-color) 0deg, #eee 0deg);
+            background: conic-gradient(var(--success-color) 0deg, #edf2f7 0deg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -174,30 +179,31 @@
         }
         .donut-chart::after {
             content: "";
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: white;
             border-radius: 50%;
             position: absolute;
         }
         .donut-inner { position: relative; z-index: 1; text-align: center; }
-        .donut-inner .perc { font-size: 1.4rem; font-weight: 800; color: var(--primary-color); }
-        .donut-inner .txt { font-size: 0.65rem; color: #777; }
+        .donut-inner .perc { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+        .donut-inner .txt { font-size: 0.75rem; color: #95a5a6; }
 
-        /* Log Styles */
         .log-list { list-style: none; }
-        .log-item { padding: 12px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; gap: 5px; }
-        .log-item:last-child { border-bottom: none; }
-        .log-header { display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 0.95rem; }
-        .log-details { display: flex; justify-content: space-between; font-size: 0.85rem; color: #555; }
+        .log-item { padding: 15px; border-bottom: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 8px; }
+        .log-header { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1rem; }
+        .log-details { display: flex; justify-content: space-between; font-size: 0.9rem; color: #555; align-items: flex-end; }
+        
+        .log-actions { display: flex; gap: 15px; }
+        .action-btn { background: none; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 700; padding: 5px 10px; border-radius: 8px; }
+        .action-btn.edit { color: var(--accent-color); background-color: #eef7ff; }
+        .action-btn.delete { color: var(--danger-color); background-color: #fff1f1; }
 
-        /* Notification Banner */
-        .notification-banner { display: none; background-color: var(--warning-color); color: white; padding: 12px; border-radius: 10px; margin-bottom: 15px; text-align: center; font-weight: bold; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .notification-banner { display: none; background: linear-gradient(135deg, var(--warning-color) 0%, #e67e22 100%); color: white; padding: 15px; border-radius: 15px; margin-bottom: 20px; text-align: center; font-weight: 700; }
 
         @media (max-width: 480px) {
             .container { padding: 10px; }
-            .live-clock { font-size: 2.8rem; }
+            .live-clock { font-size: 3rem; }
         }
     </style>
 </head>
@@ -212,18 +218,18 @@
 </header>
 
 <div class="container">
-    <div id="exit-reminder" class="notification-banner">⚠️ تبقى 10 دقائق على وقت الانصراف</div>
-    <div id="limit-warning" class="notification-banner" style="background-color: var(--danger-color);">🔴 تنبيه: لقد استهلكت أكثر من 90% من رصيد الاستئذان!</div>
+    <div id="exit-reminder" class="notification-banner">🔔 تنبيه: تبقى 10 دقائق فقط على وقت انصرافك!</div>
+    <div id="limit-warning" class="notification-banner" style="background: linear-gradient(135deg, var(--danger-color) 0%, #c0392b 100%);">🚫 تحذير: استهلكت أكثر من 90% من رصيد الاستئذان الشهري!</div>
 
     <div class="card">
-        <div class="card-title">حالة الدوام الحالية <span id="overall-status" class="status-badge status-pending">لم يتم التسجيل</span></div>
+        <div class="card-title">حالة الدوام اليوم <span id="overall-status" class="status-badge status-pending">لم يتم التسجيل</span></div>
         <div class="info-grid">
             <div class="info-item"><span class="info-label">وقت الدخول</span><span id="checkin-time" class="info-value">--:--</span></div>
-            <div class="info-item"><span class="info-label">وقت الانصراف المتوقع</span><span id="expected-checkout" class="info-value">--:--</span></div>
+            <div class="info-item"><span class="info-label">الانصراف المتوقع</span><span id="expected-checkout" class="info-value">--:--</span></div>
         </div>
         <div class="info-grid" id="checkout-row" style="display:none;">
-            <div class="info-item"><span class="info-label">وقت الخروج الفعلي</span><span id="actual-checkout" class="info-value">--:--</span></div>
-            <div class="info-item"><span class="info-label">حالة الانصراف</span><span id="exit-status-label" class="info-value">--</span></div>
+            <div class="info-item"><span class="info-label">الخروج الفعلي</span><span id="actual-checkout" class="info-value">--:--</span></div>
+            <div class="info-item"><span class="info-label">فارق الساعات</span><span id="exit-status-label" class="info-value">--</span></div>
         </div>
     </div>
 
@@ -235,16 +241,21 @@
     <div class="card">
         <div class="card-title">السجل اليومي</div>
         <ul id="log-list" class="log-list"></ul>
-        <div id="no-logs" style="text-align:center; padding: 20px; color: #999; display: none;">لا توجد سجلات سابقة</div>
+        <div id="no-logs" style="text-align:center; padding: 40px; color: #bdc3c7; display: none;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">📋</div>
+            لا توجد سجلات محفوظة حتى الآن
+        </div>
     </div>
 </div>
 
 <!-- Stats Modal -->
 <div id="stats-modal" class="modal">
     <div class="modal-content">
-        <h2 class="card-title">إحصائيات ورصيد الشهر الحالي</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 class="card-title" style="border:none; margin:0;">تقرير الشهر الحالي</h2>
+            <button onclick="closeStats()" style="background:none; border:none; font-size: 1.5rem; cursor:pointer; color:#95a5a6;">✕</button>
+        </div>
         
-        <!-- Donut Chart -->
         <div class="chart-container">
             <div id="donut-chart" class="donut-chart">
                 <div class="donut-inner">
@@ -254,11 +265,10 @@
             </div>
         </div>
 
-        <!-- Progress Section Move from Home to here -->
-        <div class="card" style="padding: 15px; background: #fdfdfd; border: 1px dashed #ddd;">
+        <div class="card" style="padding: 18px; background: #fdfdfd; border: 1px dashed #ced6e0;">
             <div class="info-grid" style="margin-bottom: 0;">
                 <div class="info-item">
-                    <span class="info-label">الرصيد المستهلك</span>
+                    <span class="info-label">صافي الاستهلاك</span>
                     <span id="consumed-hours" class="info-value">0س 0د</span>
                 </div>
                 <div class="info-item" style="text-align: left;">
@@ -269,16 +279,17 @@
             <div class="progress-bar"><div id="balance-progress" class="progress-fill"></div></div>
         </div>
 
-        <!-- Counts Summary -->
         <div class="stats-summary">
             <div class="stat-box"><span id="stat-days" class="val">0</span><span class="lbl">أيام الدوام</span></div>
-            <div class="stat-box"><span id="stat-late" class="val" style="color:var(--warning-color)">0</span><span class="lbl">مرات التأخير</span></div>
-            <div class="stat-box"><span id="stat-early" class="val" style="color:var(--danger-color)">0</span><span class="lbl">خروج مبكر</span></div>
-            <div class="stat-box"><span id="stat-regular" class="val" style="color:var(--success-color)">0</span><span class="lbl">أيام منتظمة</span></div>
+            <div class="stat-box"><span id="stat-late" class="val" style="color:var(--danger-color)">0</span><span class="lbl">ساعات استئذان</span></div>
+            <div class="stat-box"><span id="stat-early" class="val" style="color:var(--success-color)">0</span><span class="lbl">ساعات إضافية</span></div>
+            <div class="stat-box"><span id="stat-regular" class="val" style="color:var(--primary-color)">0</span><span class="lbl">أيام مكتملة</span></div>
         </div>
 
-        <div class="modal-footer">
-            <button class="btn btn-secondary" onclick="closeStats()">إغلاق</button>
+        <p style="font-size: 0.8rem; color: #7f8c8d; text-align: center; margin-top: 10px;">* الساعات الإضافية تخصم تلقائياً من ساعات النقص.</p>
+
+        <div class="modal-footer" style="margin-top: 20px;">
+            <button class="btn btn-secondary" onclick="closeStats()">إغلاق التقرير</button>
         </div>
     </div>
 </div>
@@ -286,51 +297,62 @@
 <!-- Settings Modal -->
 <div id="settings-modal" class="modal">
     <div class="modal-content">
-        <h2 class="card-title">إعدادات الدوام</h2>
-        <div style="margin-bottom: 25px;">
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px; border-bottom: 1px solid #eee;">تعديل أوقات اليوم الحالي</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 class="card-title" id="settings-modal-title" style="border:none; margin:0;">إعدادات الدوام</h2>
+            <button onclick="closeSettings()" style="background:none; border:none; font-size: 1.5rem; cursor:pointer; color:#95a5a6;">✕</button>
+        </div>
+        
+        <div id="today-edit-section" style="margin-bottom: 25px;">
+            <p style="font-size: 0.9rem; color: #7f8c8d; margin-bottom: 15px; border-bottom: 1px solid #f1f2f6; padding-bottom: 5px;">تعديل بصمة اليوم الحالي</p>
             <div class="form-group"><label>وقت الدخول</label><input type="time" id="edit-checkin" class="form-control"></div>
             <div class="form-group"><label>وقت الخروج</label><input type="time" id="edit-checkout" class="form-control"></div>
-            <button class="btn btn-checkout" style="font-size: 0.9rem; padding: 10px;" onclick="saveCurrentEdit()">تحديث بصمة اليوم</button>
+            <button class="btn btn-checkout" style="font-size: 1rem; padding: 12px;" onclick="saveCurrentEdit()">تحديث السجل</button>
         </div>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px; border-bottom: 1px solid #eee;">إضافة سجل ليوم سابق</p>
+
+        <div id="history-edit-section" style="margin-top: 10px;">
+            <p id="history-section-title" style="font-size: 0.9rem; color: #7f8c8d; margin-bottom: 15px; border-bottom: 1px solid #f1f2f6; padding-bottom: 5px;">إضافة سجل تاريخي</p>
             <div class="form-group"><label>التاريخ</label><input type="date" id="add-date" class="form-control"></div>
             <div class="form-group"><label>وقت الدخول</label><input type="time" id="add-checkin" class="form-control"></div>
             <div class="form-group"><label>وقت الخروج</label><input type="time" id="add-checkout" class="form-control"></div>
-            <button class="btn btn-checkin" style="font-size: 0.9rem; padding: 10px;" onclick="addHistoricalRecord()">إضافة للسجل</button>
+            <button class="btn btn-checkin" id="add-history-btn" style="font-size: 1rem; padding: 12px;" onclick="addHistoricalRecord()">حفظ البيانات</button>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" onclick="closeSettings()">إغلاق</button>
-            <button class="btn btn-danger" style="background-color: #fceaea; color: var(--danger-color); border: 1px solid var(--danger-color);" onclick="clearAllData()">مسح كافة البيانات</button>
+
+        <div class="modal-footer" style="flex-direction: column; gap: 10px;">
+            <button class="btn btn-accent" style="padding: 12px;" onclick="importDecemberData()">تعبئة بيانات شهر ديسمبر (تلقائي)</button>
+            <button class="btn btn-secondary" style="padding: 12px;" onclick="closeSettings()">إلغاء</button>
+            <button class="btn btn-danger" id="clear-all-btn" style="background:none; color: var(--danger-color); border: 2px solid var(--danger-color); padding: 12px; box-shadow: none;" onclick="clearAllData()">مسح كافة البيانات نهائياً</button>
         </div>
     </div>
 </div>
 
 <script>
     const WORK_HOURS = 8;
-    const MAX_PERMISSION_MINS = 11 * 60; // 660 mins
+    const MAX_PERMISSION_MINS = 11 * 60; 
     const STORAGE_KEY = "attendance_records_v1";
+    const LATEST_EXIT_ALLOWED = "17:00"; // الحد الأقصى للانصراف
 
     let records = [];
     let currentDayRecord = null;
-    let reminderShown = false;
 
     window.onload = () => {
-        updateDateTime();
-        loadRecords();
-        initializeCurrentDay();
-        renderUI();
-        setInterval(updateDateTime, 1000);
-        setInterval(checkReminders, 30000);
+        try {
+            updateDateTime();
+            loadRecords();
+            initializeCurrentDay();
+            renderUI();
+            setInterval(updateDateTime, 1000);
+            setInterval(checkReminders, 30000);
+        } catch (e) { console.error(e); }
     };
 
     function updateDateTime() {
         const now = new Date();
         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        document.getElementById('live-clock').innerText = now.toLocaleTimeString('en-GB', timeOptions);
+        const clockEl = document.getElementById('live-clock');
+        if (clockEl) clockEl.innerText = now.toLocaleTimeString('en-GB', timeOptions);
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('live-date').innerText = now.toLocaleDateString('ar-SA', dateOptions);
+        const dateEl = document.getElementById('live-date');
+        if (dateEl) dateEl.innerText = now.toLocaleDateString('ar-SA', dateOptions);
     }
 
     function loadRecords() {
@@ -363,200 +385,330 @@
     function formatTime(date) { return date.toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit' }); }
     
     function calculateExpectedExit(checkInStr) {
+        if (!checkInStr) return "--:--";
         const [h, m] = checkInStr.split(':').map(Number);
-        let expH = h + WORK_HOURS; if (expH >= 24) expH -= 24;
-        return `${String(expH).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        let expH = h + WORK_HOURS; 
+        if (expH >= 24) expH -= 24;
+        let time = `${String(expH).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        // الموظف لا يمكنه إكمال الساعات بعد 5 م
+        if (timeToMins(time) > timeToMins(LATEST_EXIT_ALLOWED)) return LATEST_EXIT_ALLOWED;
+        return time;
     }
 
     function getAttendanceStatus(checkInStr) {
+        if (!checkInStr) return "غير معروف";
         const [h, m] = checkInStr.split(':').map(Number);
         return (h * 60 + m) > (9 * 60) ? "متأخر" : "منتظم";
     }
 
-    function getExitStatus(checkInStr, checkOutStr) {
-        if (!checkOutStr) return null;
+    function getDailyDiffMins(checkInStr, checkOutStr) {
+        if (!checkOutStr || !checkInStr) return 0;
         const inMins = timeToMins(checkInStr);
-        const outMins = timeToMins(checkOutStr);
-        const actualOutMins = outMins < inMins ? outMins + 1440 : outMins;
-        const expectedOutMins = inMins + (WORK_HOURS * 60);
-        return actualOutMins < expectedOutMins ? "خروج مبكر" : "خروج نظامي";
+        let outMins = timeToMins(checkOutStr);
+        
+        // حساب مدة الدوام الفعلية
+        let duration = outMins - inMins;
+        if (duration < 0) duration += 1440; // التعامل مع منتصف الليل
+
+        return duration - (WORK_HOURS * 60);
     }
 
-    function timeToMins(timeStr) { const [h, m] = timeStr.split(':').map(Number); return h * 60 + m; }
-    function minsToFormatted(totalMins) { return `${Math.floor(Math.abs(totalMins)/60)}س ${Math.abs(totalMins)%60}د`; }
+    function getExitStatus(checkInStr, checkOutStr) {
+        const diff = getDailyDiffMins(checkInStr, checkOutStr);
+        if (diff === 0) return "منتظم";
+        if (diff > 0) return "ساعات إضافية (+" + minsToFormatted(diff) + ")";
+        return "ساعات استئذان (-" + minsToFormatted(diff) + ")";
+    }
+
+    function timeToMins(timeStr) { 
+        if (!timeStr) return 0; 
+        const [h, m] = timeStr.split(':').map(Number); 
+        return h * 60 + m; 
+    }
+
+    function minsToFormatted(totalMins) { 
+        const absMins = Math.abs(totalMins);
+        const hrs = Math.floor(absMins / 60); 
+        const mns = absMins % 60; 
+        return `${hrs}س ${mns}د`; 
+    }
 
     function calculateMonthlyStats() {
         const now = new Date();
         const currentMonth = now.getMonth();
         const currentYear = now.getFullYear();
         
-        let deficit = 0, days = 0, late = 0, early = 0, regular = 0;
+        let totalNetDiff = 0; // صافي الفارق (إضافي - نقص)
+        let totalDeficit = 0;
+        let totalSurplus = 0;
+        let days = 0;
+        let regular = 0;
 
         records.forEach(r => {
             const rDate = new Date(r.date);
             if (rDate.getMonth() === currentMonth && rDate.getFullYear() === currentYear) {
                 days++;
-                let isProblem = false;
-                const inMins = timeToMins(r.checkIn);
-                if (inMins > 540) { // 9:00 AM
-                    deficit += (inMins - 540);
-                    late++;
-                    isProblem = true;
-                }
                 if (r.checkOut) {
-                    const outMins = timeToMins(r.checkOut);
-                    const realOut = outMins < inMins ? outMins + 1440 : outMins;
-                    const expected = inMins + 480;
-                    if (realOut < expected) {
-                        deficit += (expected - realOut);
-                        early++;
-                        isProblem = true;
-                    }
+                    const diff = getDailyDiffMins(r.checkIn, r.checkOut);
+                    totalNetDiff += diff;
+                    if (diff < 0) totalDeficit += Math.abs(diff);
+                    else if (diff > 0) totalSurplus += diff;
+                    else regular++;
                 }
-                if (!isProblem && r.checkOut) regular++;
             }
         });
-        return { deficit, days, late, early, regular };
+
+        // رصيد الاستئذان المستهلك هو فقط النقص الصافي (إذا كان الفارق سالب)
+        // ولكن حسب طلب المستخدم: الساعات الإضافية تخصم من ساعات النقص.
+        // أي أننا نحسب: الاستهلاك = مجموع النقص - مجموع الإضافي.
+        let netConsumed = Math.max(0, totalDeficit - totalSurplus);
+        
+        return { 
+            netConsumed, 
+            totalDeficit, 
+            totalSurplus, 
+            days, 
+            regular 
+        };
     }
 
     function performCheckIn() {
         if (currentDayRecord) return;
-        const now = new Date();
-        const timeStr = formatTime(now);
-        currentDayRecord = { date: getTodayDateString(), checkIn: timeStr, expectedExit: calculateExpectedExit(timeStr), checkOut: null, status: getAttendanceStatus(timeStr), exitStatus: null };
-        records.unshift(currentDayRecord);
-        saveRecords();
+        const timeStr = formatTime(new Date());
+        currentDayRecord = { 
+            date: getTodayDateString(), 
+            checkIn: timeStr, 
+            expectedExit: calculateExpectedExit(timeStr), 
+            checkOut: null, 
+            status: getAttendanceStatus(timeStr), 
+            exitStatus: null 
+        };
+        records.unshift(currentDayRecord); 
+        saveRecords(); 
         renderUI();
     }
 
     function performCheckOut() {
         if (!currentDayRecord || currentDayRecord.checkOut) return;
-        const now = new Date();
-        const timeStr = formatTime(now);
-        currentDayRecord.checkOut = timeStr;
+        const timeStr = formatTime(new Date());
+        currentDayRecord.checkOut = timeStr; 
         currentDayRecord.exitStatus = getExitStatus(currentDayRecord.checkIn, timeStr);
-        saveRecords();
+        saveRecords(); 
         renderUI();
     }
 
     function checkReminders() {
-        if (!currentDayRecord || currentDayRecord.checkOut) { document.getElementById('exit-reminder').style.display = 'none'; return; }
-        const now = new Date();
+        if (!currentDayRecord || currentDayRecord.checkOut || !currentDayRecord.expectedExit) { 
+            document.getElementById('exit-reminder').style.display = 'none'; 
+            return; 
+        }
         const [h, m] = currentDayRecord.expectedExit.split(':').map(Number);
-        const exp = new Date(); exp.setHours(h, m, 0, 0);
-        const diff = (exp.getTime() - now.getTime()) / (1000 * 60);
-        document.getElementById('exit-reminder').style.display = (diff > 0 && diff <= 10) ? 'block' : 'none';
+        const exp = new Date(); 
+        exp.setHours(h, m, 0, 0);
+        const diffInMins = (exp.getTime() - (new Date()).getTime()) / (1000 * 60);
+        document.getElementById('exit-reminder').style.display = (diffInMins > 0 && diffInMins <= 10) ? 'block' : 'none';
     }
 
     function renderUI() {
         const stats = calculateMonthlyStats();
-        const perc = Math.min(100, (stats.deficit / MAX_PERMISSION_MINS) * 100);
-
-        // Update limit warning on home screen
+        const perc = Math.min(100, (stats.netConsumed / MAX_PERMISSION_MINS) * 100);
         document.getElementById('limit-warning').style.display = (perc >= 90) ? 'block' : 'none';
-
+        
+        const badge = document.getElementById('overall-status');
         if (currentDayRecord) {
             document.getElementById('btn-checkin').disabled = true;
-            document.getElementById('btn-checkin').innerText = "تم تسجيل الدخول";
-            document.getElementById('checkin-time').innerText = currentDayRecord.checkIn;
-            document.getElementById('expected-checkout').innerText = currentDayRecord.expectedExit;
-            document.getElementById('overall-status').innerText = currentDayRecord.status;
-            document.getElementById('overall-status').className = "status-badge " + (currentDayRecord.status === "منتظم" ? "status-regular" : "status-late");
-
+            document.getElementById('checkin-time').innerText = currentDayRecord.checkIn || "--:--";
+            document.getElementById('expected-checkout').innerText = currentDayRecord.expectedExit || "--:--";
+            
+            const diff = getDailyDiffMins(currentDayRecord.checkIn, currentDayRecord.checkOut);
+            
             if (currentDayRecord.checkOut) {
                 document.getElementById('btn-checkout').disabled = true;
                 document.getElementById('checkout-row').style.display = "grid";
                 document.getElementById('actual-checkout').innerText = currentDayRecord.checkOut;
-                document.getElementById('exit-status-label').innerText = currentDayRecord.exitStatus;
-                document.getElementById('overall-status').innerText = currentDayRecord.exitStatus;
-                document.getElementById('overall-status').className = "status-badge " + (currentDayRecord.exitStatus === "خروج نظامي" ? "status-normal" : "status-early");
-            } else {
-                document.getElementById('btn-checkout').disabled = false;
+                document.getElementById('exit-status-label').innerText = (diff >= 0 ? "+" : "-") + minsToFormatted(diff);
+                
+                badge.innerText = currentDayRecord.exitStatus.split(' (')[0]; 
+                if (diff === 0) badge.className = "status-badge status-normal";
+                else if (diff > 0) badge.className = "status-badge status-extra";
+                else badge.className = "status-badge status-early";
+            } else { 
+                document.getElementById('btn-checkout').disabled = false; 
                 document.getElementById('checkout-row').style.display = "none";
+                badge.innerText = currentDayRecord.status; 
+                badge.className = "status-badge " + (currentDayRecord.status === "منتظم" ? "status-regular" : "status-late");
             }
         } else {
-            document.getElementById('btn-checkin').disabled = false;
+            document.getElementById('btn-checkin').disabled = false; 
             document.getElementById('btn-checkout').disabled = true;
-            document.getElementById('overall-status').innerText = "لم يتم التسجيل";
-            document.getElementById('overall-status').className = "status-badge status-pending";
+            badge.innerText = "لم يتم التسجيل"; 
+            badge.className = "status-badge status-pending";
             document.getElementById('checkout-row').style.display = "none";
-            document.getElementById('checkin-time').innerText = "--:--";
+            document.getElementById('checkin-time').innerText = "--:--"; 
             document.getElementById('expected-checkout').innerText = "--:--";
         }
         renderLog();
     }
 
     function renderLog() {
-        const logList = document.getElementById('log-list');
+        const logList = document.getElementById('log-list'); 
         const noLogs = document.getElementById('no-logs');
         logList.innerHTML = '';
-        const hist = records.filter(r => r.date !== getTodayDateString() || r.checkOut);
-        if (hist.length === 0) { noLogs.style.display = 'block'; return; }
+        const listToShow = records.filter(r => r.date !== getTodayDateString() || r.checkOut);
+        if (listToShow.length === 0) { noLogs.style.display = 'block'; return; }
         noLogs.style.display = 'none';
-        hist.forEach(record => {
-            const li = document.createElement('li'); li.className = 'log-item';
-            const exitColor = record.exitStatus === "خروج نظامي" ? "status-normal" : (record.exitStatus === "خروج مبكر" ? "status-early" : "status-pending");
-            li.innerHTML = `<div class="log-header"><span>${record.date}</span><span class="status-badge ${exitColor}">${record.exitStatus || 'قيد العمل'}</span></div><div class="log-details"><span>دخول: ${record.checkIn} <small>(${record.status})</small></span><span>خروج: ${record.checkOut || '--:--'}</span></div>`;
+        
+        listToShow.forEach(record => {
+            const li = document.createElement('li'); 
+            li.className = 'log-item';
+            const diff = getDailyDiffMins(record.checkIn, record.checkOut);
+            let badgeClass = "status-normal";
+            if (diff > 0) badgeClass = "status-extra";
+            else if (diff < 0) badgeClass = "status-early";
+
+            li.innerHTML = `
+                <div class="log-header">
+                    <span>${record.date}</span>
+                    <span class="status-badge ${badgeClass}">${record.exitStatus || 'قيد العمل'}</span>
+                </div>
+                <div class="log-details">
+                    <div>
+                        <span>دخول: ${record.checkIn} <small style="color:#7f8c8d">(${record.status})</small></span><br>
+                        <span>خروج: ${record.checkOut || '--:--'}</span>
+                    </div>
+                    <div class="log-actions">
+                        <button class="action-btn edit" onclick="editRecordByDate('${record.date}')">تعديل</button>
+                        <button class="action-btn delete" onclick="deleteRecordByDate('${record.date}')">حذف</button>
+                    </div>
+                </div>`;
             logList.appendChild(li);
         });
     }
 
-    function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; if (currentDayRecord) { document.getElementById('edit-checkin').value = currentDayRecord.checkIn; document.getElementById('edit-checkout').value = currentDayRecord.checkOut || ''; } }
-    function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
-
+    function openSettings() { 
+        document.getElementById('settings-modal').style.display = 'flex'; 
+        if (currentDayRecord) { 
+            document.getElementById('edit-checkin').value = currentDayRecord.checkIn || ''; 
+            document.getElementById('edit-checkout').value = currentDayRecord.checkOut || ''; 
+        } 
+    }
+    
+    function closeSettings() { 
+        document.getElementById('settings-modal').style.display = 'none'; 
+    }
+    
     function openStats() {
-        const s = calculateMonthlyStats();
-        const consumedMins = s.deficit;
-        const remainingMins = Math.max(0, MAX_PERMISSION_MINS - consumedMins);
-        const perc = Math.min(100, (consumedMins / MAX_PERMISSION_MINS) * 100);
+        const s = calculateMonthlyStats(); 
+        const remainingMins = Math.max(0, MAX_PERMISSION_MINS - s.netConsumed); 
+        const percValue = Math.min(100, (s.netConsumed / MAX_PERMISSION_MINS) * 100);
         
-        // Update Modal UI
-        document.getElementById('consumed-hours').innerText = minsToFormatted(consumedMins);
+        document.getElementById('consumed-hours').innerText = minsToFormatted(s.netConsumed); 
         document.getElementById('remaining-hours').innerText = minsToFormatted(remainingMins);
         
         const progressBar = document.getElementById('balance-progress');
-        progressBar.style.width = perc + "%";
-        progressBar.className = "progress-fill " + (perc >= 90 ? 'progress-danger' : (perc >= 70 ? 'progress-warning' : ''));
-
-        document.getElementById('stat-days').innerText = s.days;
-        document.getElementById('stat-late').innerText = s.late;
-        document.getElementById('stat-early').innerText = s.early;
-        document.getElementById('stat-regular').innerText = s.regular;
-        document.getElementById('stat-perc').innerText = Math.round(perc) + "%";
+        if (progressBar) { 
+            progressBar.style.width = percValue + "%"; 
+            progressBar.className = "progress-fill " + (percValue >= 90 ? 'progress-danger' : (percValue >= 70 ? 'progress-warning' : '')); 
+        }
         
-        const chartColor = perc >= 90 ? 'var(--danger-color)' : (perc >= 70 ? 'var(--warning-color)' : 'var(--success-color)');
-        document.getElementById('donut-chart').style.background = `conic-gradient(${chartColor} ${perc * 3.6}deg, #eee 0deg)`;
+        document.getElementById('stat-days').innerText = s.days; 
+        document.getElementById('stat-late').innerText = minsToFormatted(s.totalDeficit); 
+        document.getElementById('stat-early').innerText = minsToFormatted(s.totalSurplus); 
+        document.getElementById('stat-regular').innerText = s.regular; 
+        document.getElementById('stat-perc').innerText = Math.round(percValue) + "%";
         
+        const donutChart = document.getElementById('donut-chart');
+        if (donutChart) { 
+            const chartColor = percValue >= 90 ? 'var(--danger-color)' : (percValue >= 70 ? 'var(--warning-color)' : 'var(--success-color)'); 
+            donutChart.style.background = `conic-gradient(${chartColor} ${percValue * 3.6}deg, #edf2f7 0deg)`; 
+        }
         document.getElementById('stats-modal').style.display = 'flex';
     }
+    
     function closeStats() { document.getElementById('stats-modal').style.display = 'none'; }
 
+    function importDecemberData() {
+        const decData = [
+            { d: "2025-12-01", in: "07:27", out: "15:28" },
+            { d: "2025-12-02", in: "08:46", out: "16:46" },
+            { d: "2025-12-03", in: "07:41", out: "15:44" },
+            { d: "2025-12-04", in: "08:26", out: "16:29" },
+            { d: "2025-12-07", in: "07:49", out: "15:11" },
+            { d: "2025-12-08", in: "09:11", out: "17:21" },
+            { d: "2025-12-09", in: "07:33", out: "15:34" },
+            { d: "2025-12-10", in: "08:45", out: "14:48" },
+            { d: "2025-12-14", in: "08:57", out: "15:09" },
+            { d: "2025-12-15", in: "09:13", out: "17:00" },
+            { d: "2025-12-16", in: "09:33", out: "14:58" },
+            { d: "2025-12-17", in: "08:21", out: "16:59" },
+            { d: "2025-12-18", in: "08:13", out: "16:26" },
+            { d: "2025-12-21", in: "07:47", out: "15:52" },
+            { d: "2025-12-22", in: "10:11", out: "15:15" },
+            { d: "2025-12-23", in: "08:21", out: "16:40" },
+            { d: "2025-12-24", in: "08:21", out: "16:22" },
+            { d: "2025-12-25", in: "08:16", out: "16:16" }
+        ];
+
+        decData.forEach(item => {
+            const existingIdx = records.findIndex(r => r.date === item.d);
+            const entry = { 
+                date: item.d, 
+                checkIn: item.in, 
+                expectedExit: calculateExpectedExit(item.in), 
+                checkOut: item.out, 
+                status: getAttendanceStatus(item.in), 
+                exitStatus: getExitStatus(item.in, item.out) 
+            };
+            if (existingIdx > -1) records[existingIdx] = entry;
+            else records.push(entry);
+        });
+
+        saveRecords(); 
+        initializeCurrentDay(); 
+        renderUI(); 
+        alert("تم تعبئة بيانات ديسمبر بنظام الموازنة (الإضافي يخصم من النقص)"); 
+        closeSettings();
+    }
+
+    function editRecordByDate(dateStr) {
+        const record = records.find(r => r.date === dateStr);
+        if (!record) return;
+        document.getElementById('settings-modal-title').innerText = "تعديل سجل يوم " + dateStr;
+        document.getElementById('today-edit-section').style.display = "none";
+        document.getElementById('history-section-title').innerText = "تعديل التفاصيل";
+        document.getElementById('add-history-btn').innerText = "حفظ التعديلات";
+        document.getElementById('clear-all-btn').style.display = "none";
+        document.getElementById('add-date').value = record.date;
+        document.getElementById('add-date').disabled = true; 
+        document.getElementById('add-checkin').value = record.checkIn || '';
+        document.getElementById('add-checkout').value = record.checkOut || '';
+        document.getElementById('settings-modal').style.display = 'flex';
+    }
+
+    function deleteRecordByDate(dateStr) { if (confirm(`حذف سجل يوم ${dateStr}؟`)) { records = records.filter(r => r.date !== dateStr); if (dateStr === getTodayDateString()) currentDayRecord = null; saveRecords(); renderUI(); } }
+    
     function saveCurrentEdit() {
-        const cin = document.getElementById('edit-checkin').value;
-        const cout = document.getElementById('edit-checkout').value;
-        if (!cin) return alert("أدخل وقت دخول صحيح");
-        const today = getTodayDateString();
+        const cin = document.getElementById('edit-checkin').value, cout = document.getElementById('edit-checkout').value;
+        if (!cin) return alert("وقت دخول غير صالح");
         if (!currentDayRecord) {
-            currentDayRecord = { date: today, checkIn: cin, expectedExit: calculateExpectedExit(cin), checkOut: cout || null, status: getAttendanceStatus(cin), exitStatus: cout ? getExitStatus(cin, cout) : null };
+            currentDayRecord = { date: getTodayDateString(), checkIn: cin, expectedExit: calculateExpectedExit(cin), checkOut: cout || null, status: getAttendanceStatus(cin), exitStatus: cout ? getExitStatus(cin, cout) : null };
             records.unshift(currentDayRecord);
-        } else {
-            currentDayRecord.checkIn = cin; currentDayRecord.checkOut = cout || null; currentDayRecord.expectedExit = calculateExpectedExit(cin); currentDayRecord.status = getAttendanceStatus(cin); currentDayRecord.exitStatus = cout ? getExitStatus(cin, cout) : null;
-        }
-        saveRecords(); renderUI(); alert("تم التحديث");
+        } else { currentDayRecord.checkIn = cin; currentDayRecord.checkOut = cout || null; currentDayRecord.expectedExit = calculateExpectedExit(cin); currentDayRecord.status = getAttendanceStatus(cin); currentDayRecord.exitStatus = cout ? getExitStatus(cin, cout) : null; }
+        saveRecords(); renderUI(); alert("تم التحديث"); closeSettings();
     }
 
     function addHistoricalRecord() {
         const d = document.getElementById('add-date').value, cin = document.getElementById('add-checkin').value, cout = document.getElementById('add-checkout').value;
-        if (!d || !cin) return alert("أدخل التاريخ ووقت الدخول");
+        if (!d || !cin) return alert("حدد التاريخ ووقت الدخول");
         const idx = records.findIndex(r => r.date === d);
         const nr = { date: d, checkIn: cin, expectedExit: calculateExpectedExit(cin), checkOut: cout || null, status: getAttendanceStatus(cin), exitStatus: cout ? getExitStatus(cin, cout) : null };
-        if (idx > -1) { if (confirm("يوجد سجل بالفعل لهذا اليوم، هل تريد استبداله؟")) records[idx] = nr; else return; } else records.push(nr);
+        if (idx > -1) records[idx] = nr; else records.push(nr);
         saveRecords(); if (d === getTodayDateString()) currentDayRecord = nr;
-        renderUI(); alert("تمت الإضافة");
+        renderUI(); alert("تم الحفظ"); closeSettings();
     }
 
-    function clearAllData() { if (confirm("هل أنت متأكد من مسح كافة البيانات؟")) { records = []; currentDayRecord = null; saveRecords(); renderUI(); closeSettings(); } }
-    window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; }
+    function clearAllData() { if (confirm("مسح كافة البيانات نهائياً؟")) { records = []; currentDayRecord = null; localStorage.removeItem(STORAGE_KEY); renderUI(); closeSettings(); } }
+    window.onclick = e => { if (e.target.classList.contains('modal')) { closeSettings(); closeStats(); } }
 </script>
 
 </body>
